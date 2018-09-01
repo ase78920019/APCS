@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int b[4],c[4],g[4],a[7];
+	int min;
+	while(cin>>b[1]>>b[2]>>b[3]>>c[1]>>c[2]>>c[3]>>g[1]>>g[2]>>g[3]){
+		a[1]=b[2]+b[3]+c[1]+c[3]+g[1]+g[2];
+		a[2]=b[2]+b[3]+c[1]+c[2]+g[1]+g[3];
+		a[3]=b[1]+b[3]+c[2]+c[3]+g[1]+g[2];
+		a[4]=b[1]+b[2]+c[2]+c[3]+g[1]+g[3];
+		a[5]=b[1]+b[3]+c[1]+c[2]+g[2]+g[3];
+		a[6]=b[1]+b[2]+c[1]+c[3]+g[2]+g[3];
+		min=a[6];
+		for(int i=6;i>0;i--){
+			if(min>a[i-1])min=a[i-1];
+		}
+		if(min==a[1])cout<<"BCG "<<min;
+		else if(min==a[2])cout<<"BGC "<<min;
+		else if(min==a[3])cout<<"CBG "<<min;
+		else if(min==a[4])cout<<"CGB "<<min;
+		else if(min==a[5])cout<<"GBC "<<min;
+		else if(min==a[6])cout<<"GCB "<<min;
+		min=0;
+		
+	}
+	
+	
+	return 0;
+}
