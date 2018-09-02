@@ -1,0 +1,17 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	string a;
+	while(getline(cin,a)){
+		for(int i=0;i<a.size();i++){
+			a[i]-=7;
+		}
+		cout<<a<<'\n';
+	}
+	
+	return 0;
+}
