@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int a,b;
+	while(cin>>a>>b){
+		int c[a+1],d[a+1]={};
+		for(int i=1;i<=b;i++)cin>>c[i];
+		if(a==b){
+			cout<<"*"<<'\n';
+			continue;
+		}
+		for(int i=1;i<=b;i++){
+			d[c[i]]=1;
+		}
+		for(int i=1;i<=a;i++){
+			if(d[i]==0)cout<<i<<" ";
+		}
+		cout<<'\n';
+	}
+	
+	return 0;
+}
