@@ -10,10 +10,11 @@ int main()
 	string s;
 	while(cin>>a){
 		if(a==0)break;
+		cin>>s;
 		string s1;
-		for(int i=0;i<(s.size())/a+1;i++){
+		for(int i=0;i<(s.size())/a;i++){
 			s1=s.substr(a*i,a);
-			int *p=s[a-1];
+			reverse(s1.begin(),s1.end());
 			cout<<s1;
 		}
 		cout<<'\n';
