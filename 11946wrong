@@ -19,7 +19,7 @@ int main()
 			}
 			puts(str);
 		}
-		if(b==0)break;
+		if(b==1)puts("");
 
 	}
 	
