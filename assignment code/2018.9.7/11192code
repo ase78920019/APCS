@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string.h>
+#include <algorithm>
+using namespace std;
+int main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int a;
+	string s;
+	while(cin>>a){
+		if(a==0)break;
+		cin>>s;
+		string s1;
+		for(int i=0;i<a;i++){
+			s1=s.substr(((s.size())/a)*i,(s.size())/a);
+			reverse(s1.begin(),s1.end());
+			cout<<s1;
+		}
+		cout<<'\n';
+	}
+	
+	
+	return 0;
+}
