@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int n,m;
+	int x,y;
+	while(cin>>n>>m>>x>>y){
+		if(n==0&&m==0)break;
+		char a[n][m],b[n][m]={};
+		for(int i=0;i<n;i++){
+			for(int j=0;j<m;j++){
+				cin>>a[i][j];
+			}
+		}
+		while(a[x][y]){
+			a[x][y]=='0';
+			if(a[x][y-1]=='0'||a[x+1][y]=='0'||a[x][y+1]=='0'||a[x-1][y]=='0'){
+				if(a[x][y-1]=='X')b[x][y-1]=='X';
+				else if(a[x+1][y]=='X')b[x+1][y]=='X';
+				else if(a[x][y+1]=='X')b[x][y+1]=='X';
+				else if(a[x-1][y]=='X')b[x-1][y]=='X';
+				if(a[x][y-1]=='0'){
+					b[x][y-1]=='0';
+					y--;
+				}
+				else if(a[x+1][y]=='0'){
+					b[x+1][y]=='0';
+					x++;
+				}
+				else if(a[x][y+1]=='0'){
+					b[x][y+1]=='0';
+					y++;
+				}
+				else if(a[x-1][y]=='0'){
+					b[x-1][y]=='0';
+					x--;
+				}
+				
+			}
+			else break;
+		}
+		for(int i=0;i<n;i++){
+			for(int j=0;j<m;j++){
+				if(b[i][j]=='0')a[i][j]=='0';
+				else if(b[i][j]=='X')a[i][j]=='X';
+				else if(b[i][j]=='\0')a[i][j]=='?';
+				cout<<a[i][j];
+			}
+		}
+		
+	}
+	
+	
+	
+	return 0;
+}
