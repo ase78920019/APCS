@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <list>//一種可修改的container
+using namespace std;
+
+list<char> s;//定義一個空的container s
+list<char> :: iterator it;//有個指標it
+
+int main(){
+	it =s.begin();//it初始指向container開始
+	char c;
+	while(~(c=getchar())){
+		if(c=='['){
+			it=s.begin();
+		}
+		else if(c==']'){
+			it=s.end();//指向最後面
+		}
+		else if(c=='\n'){
+			for(it=s.begin();it!=s.end();it++){//從開頭到結尾一一指向
+				printf("%c",*it);//輸出所指的字元
+			}
+			printf("\n");
+			s.clear();//清空此container
+			it=s.begin();//重新指向開始
+		}
+		else s.insert(it,c);//在it所指向的位置,插入c的值
+	}
+	
+	return 0;
+}
