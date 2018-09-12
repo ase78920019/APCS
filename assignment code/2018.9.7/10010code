@@ -1,0 +1,96 @@
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+char ary[55][55],ary2[55];
+int N,m,n,a;
+
+void Aa(char aa[]){
+	for(int i=0;aa[i];i++)
+	  if(aa[i]>='A'&&aa[i]<='Z')aa[i]+=32;
+}
+
+bool test (int i, int j)
+{
+    int o;
+    for (o=1; i-o>=0 && ary2[o]==ary[i-o][j];)
+	{
+		o++; 
+		if (ary2[o]=='\0') 
+			return 1;
+	}
+    for (o=1; i+o<m  && ary2[o]==ary[i+o][j];)
+	{
+		o++;
+		if (ary2[o]=='\0') 
+			return 1;
+	}
+    for (o=1; j-o>=0 && ary2[o]==ary[i][j-o];)
+	{
+		o++;
+		if (ary2[o]=='\0') 
+			return 1;
+	}
+    for (o=1; j+o<n  && ary2[o]==ary[i][j+o];)
+	{
+		o++; 
+		if (ary2[o]=='\0') 
+			return 1;
+	}
+    for (o=1; i-o>=0 && j-o>=0 && ary2[o]==ary[i-o][j-o];)
+	{
+		o++; 
+		if (ary2[o]=='\0') 
+			return 1;
+	}
+    for (o=1; i+o<m  && j-o>=0 && ary2[o]==ary[i+o][j-o];)
+	{
+		o++; 
+		if (ary2[o]=='\0') 
+			return 1;
+	}
+    for (o=1; i-o>=0 && j+o<n  && ary2[o]==ary[i-o][j+o];)
+	{
+		o++; 
+		if (ary2[o]=='\0') 
+			return 1;
+	}
+    for (o=1; i+o<m  && j+o<n  && ary2[o]==ary[i+o][j+o];)
+	{
+		o++; 
+		if (ary2[o]=='\0') 
+			return 1;
+	}
+    return 0;
+}
+int main()
+{
+	cin>>N;
+	while(N--){
+		scanf("%d %d",&m,&n);
+		for(int i=0;i<m;i++){
+			scanf("%s",ary[i]);
+			Aa(ary[i]);
+		}
+		scanf("%d",&a);
+		while(a--){
+			scanf("%s",ary2);
+			Aa(ary2);
+			
+			int i,j,flag=0;
+			for(i=0;i<m&&!flag;i++)
+			  for(j=0;j<n&&!flag;j++)
+				if(ary[i][j] == ary2[0] && test(i,j)){
+					printf("%d %d\n",i+1,j+1);
+					flag=1;
+				}
+				else if(ary[i][j] == ary2[0] && ary2[1]=='\0'){
+					printf("%d %d\n",i+1,j+1);
+					flag=1;
+				}
+		}
+		if(N>=1)printf("\n");
+	}
+	
+	return 0;
+}
