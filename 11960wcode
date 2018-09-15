@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int aa[1000010]={},f[1000010]={};
+
+int c(int cc){		
+	aa[1]=1,aa[2]=2;
+	for(int i=3;i<=sqrt(cc);i+=2){
+		  if(aa[i]==0){
+		  	aa[i]=i;
+			for(int k=i*i,j=i+i;k<=cc;k+=j) {
+			  aa[k]=i;
+			}
+		  }
+		}
+	for(int i=2;i<=sqrt(cc);i+=2){
+		aa[i]=2;
+	}
+		
+	f[1]=1;
+	int i;
+	for(i=2;i<=cc;i++){
+		int k=i/aa[i];
+		int j=1;
+		while (k>1 && k%aa[i]==0){
+			k/=aa[i];
+			j++;
+		}
+		f[i]=f[k]*(j+1);
+	}
+	if(cc==1)return 1;
+	else return i;
+	
+}
+
+int main(void) {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int a,n;
+	cin>>n;
+	while(n--){
+		cin>>a;
+		cout<<c(a)<<"\n";	
+	}
+
+	return 0;
+}
