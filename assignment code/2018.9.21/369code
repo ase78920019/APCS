@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int no[105][105]={};
+bool flag[105][105]={};
+int C(int n,int m)
+{
+	if(flag[n][m])
+		return no[n][m];
+	else if(n==m)
+		return 1;
+	else if(m==1)
+		return n; 
+	else {
+		flag[n][m]=true;
+		return no[n][m]=C(n-1,m)+C(n-1,m-1);
+	}
+}
+int main(){
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int n,m;
+	while(cin>>n>>m){
+		if(n==0&&m==0)break;
+		cout<<n<<" things taken "<<m<<" at a time is "<<C(n,m)<<" exactly.\n";
+	}
+	
+	return 0;
+}
