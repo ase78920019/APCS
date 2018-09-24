@@ -71,12 +71,16 @@ int main(){
 	while(cin>>n>>m>>x>>y){
 		if(n==0&&m==0)break;
 		int map[n+1][m+1],copy[n+1][m+1];
+		bool flag[n+1][m+1]={};
 		for(int i=1;i<=n;i++)
 	  	  for(int j=j;j<=m;j++){
 	  		cin>>map[i][j];
 	  		copy[i][j]='?';
 	  	  }
-	  	while(copy[x][y]='0'){
+	  	  
+	  	copy[x][y]='0'
+	  	
+	  	while(flag[x][y]=true){
 	  		if(map[x--][y]=='X' && map[x--][y++]=='0' && map[x][y++]=='0' && map[x][y++]=='0')
 	  		
 	  		if(map[x--][y]=='0')copy[x--][y]='0';
@@ -88,14 +92,23 @@ int main(){
 			if(map[x][y--]=='0')copy[x][y--]='0';
 			if(map[x--][y--]=='0')copy[x--][y--]='0';
 			
-			if(map[x--][y]=='0'){x--;}
-			else if(map[x--][y++]=='0'){x--;y++;}
-			else if(map[x][y++]=='0'){y++;}
-			else if(map[x++][y++]=='0'){x++;y++;}
-			else if(map[x++][y]=='0'){x++;}
-			else if(map[x++][y--]=='0'){x++;y--;}
-			else if(map[x][y--]=='0'){y--;}
-			else if(map[x--][y--]=='0'){x--;y--;}				
+			if(map[x--][y]=='X')copy[x--][y]='X';
+			if(map[x--][y++]=='X')copy[x--][y++]='X';
+			if(map[x][y++]=='X')copy[x][y++]='X';
+			if(map[x][y++]=='X')copy[x++][y++]='X';
+			if(map[x++][y]=='X')copy[x++][y]='X';	
+			if(map[x++][y--]=='X')copy[x++][y--]='X';
+			if(map[x][y--]=='X')copy[x][y--]='X';
+			if(map[x--][y--]=='X')copy[x--][y--]='X';
+			
+			if(map[x--][y]=='0' && flag[x][y]==false){x--;}
+			else if(map[x--][y++]=='0' && flag[x][y]==false){x--;y++;}
+			else if(map[x][y++]=='0' && flag[x][y]==false){y++;}
+			else if(map[x++][y++]=='0' && flag[x][y]==false){x++;y++;}
+			else if(map[x++][y]=='0' && flag[x][y]==false){x++;}
+			else if(map[x++][y--]=='0' && flag[x][y]==false){x++;y--;}
+			else if(map[x][y--]=='0' && flag[x][y]==false){y--;}
+			else if(map[x--][y--]=='0' && flag[x][y]==false){x--;y--;}				
 		}
 	  	
 	}
