@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+
+int a[10005],b[10005];
+void qsort(int p,int q){
+	if(p>=q)return;
+	int i,j;
+	for(i=p+1,j=p+1;j<=q;i++,j++){
+		for(;j<=q&&a[j]>=a[p];j++);
+		if(j<=q)swap(a[i],a[j]);
+		else  break;
+	}
+	i--;
+	swap(a[i],a[p]);
+	qsort(p,i-1);
+	qsort(i+1,q);
+}
+
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int n,q,o=1,flag=0;
+	while(cin>>n>>q){
+		if(n==0&&q==0)break;
+		for(int i=0;i<n;i++)
+			cin>>a[i];
+		for(int i=0;i<q;i++)
+			cin>>b[i];
+		cout<<"CASE# "<<o<<":\n";
+		
+		qsort(0,n-1);
+		
+		for(int i=0;i<q;i++){
+		  for(int j=0;j<n;j++){
+			if(a[j]==b[i]){
+				cout<<b[i]<<" found at "<<++j<<'\n';
+				break;
+			}
+			flag++;
+			if(flag==n)
+				cout<<b[i]<<" not found\n";
+		  }
+		  flag=0;
+		}
+		o++;
+	}
+	
+	return 0;
+}
