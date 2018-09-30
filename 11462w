@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+
+int a[2000005];
+void qsort(int p,int q){
+	if(p>=q)return;
+	swap(a[p],a[p+rand()%(q-p+1)]);
+	int i,j;
+	for(i=p+1,j=p+1;j<=q;i++,j++){
+		for(;j<=q&&a[j]>=a[p];j++);
+		if(j<=q)swap(a[i],a[j]);
+		else  break;
+	}
+	i--;
+	swap(a[i],a[p]);
+	qsort(p,i-1);
+	qsort(i+1,q);
+}
+
+int main() {
+	int n;
+	while(~scanf("%d",&n)){
+		if(n==0)break;
+		for(int i=0;i<n;i++)
+			scanf("%d",&a[i]);
+		
+		qsort(0,n-1);
+		
+		for(int i=0;i<n;i++)
+			printf("%d ",a[i]);
+		printf("\n");
+	}
+	
+	return 0;
+}
